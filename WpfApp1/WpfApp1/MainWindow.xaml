@@ -19,8 +19,38 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Row ="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Menu" Background="AliceBlue"/>
-        <Label Grid.Row ="1" Grid.Column="0" Content="Statystyki postaci" Background="Aquamarine"/>
-        <Label Grid.Row ="1" Grid.Column="1" Content="Statystyki gry" Background="Beige"/>
+        <Grid Grid.Row ="1" Grid.Column="0" Background="Aquamarine">
+            <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Imię: "/>
+            <Label Grid.Row="0" Grid.Column="1" Content="{Binding CurrentPlayer.Imię}"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Klasa: "/>
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding CurrentPlayer.KlasaPostaci}"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Punkty życia: "/>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentPlayer.PunktyZycia}"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Złoto: "/>
+            <Label Grid.Row="3" Grid.Column="1" Content="{Binding CurrentPlayer.Złoto}"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="Punkty Doświadczenia: "/>
+            <Label Grid.Row="4" Grid.Column="1" Content="{Binding CurrentPlayer.PunktyDoswiadczenia}"/>
+            <Label Grid.Row="5" Grid.Column="0" Content="Poziom: "/>
+            <Label Grid.Row="5" Grid.Column="1" Content="{Binding CurrentPlayer.Poziom}"/>
+        </Grid>
+
+            <Label Grid.Row ="1" Grid.Column="1" Content="Statystyki gry" Background="Beige"/>
         <Label Grid.Row ="2" Grid.Column="0" Content="Inwentarz/Zadania" Background="BurlyWood"/>
         <Label Grid.Row ="2" Grid.Column="1" Content="Walka/Sterowanie" Background="Lavender"/>
 
