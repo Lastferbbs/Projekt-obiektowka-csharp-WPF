@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Engine.Models
 {
-    class Player
+    public class Player
     {
-        string Imię { get; set; }
-        string KlasaPostaci { get; set: }
-        int PunktyZycia { get; set; }
-        int PunktyDoswiadczenia { get; set: }
-        int Poziom { get; set; }
-        int Złoto { get; set; }
+        public string Imię { get; set; }
+        public string KlasaPostaci { get; set; }
+        public int PunktyZycia { get; set; }
+        public int PunktyDoswiadczenia { get; set;  }
+        public int Poziom { get; set; }
+        public  int Złoto { get; set; }
 
 
     }
