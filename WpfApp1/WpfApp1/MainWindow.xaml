@@ -48,6 +48,7 @@
             <Label Grid.Row="4" Grid.Column="1" Content="{Binding CurrentPlayer.PunktyDoswiadczenia}"/>
             <Label Grid.Row="5" Grid.Column="0" Content="Poziom: "/>
             <Label Grid.Row="5" Grid.Column="1" Content="{Binding CurrentPlayer.Poziom}"/>
+            <Button Grid.Row="6" Grid.Column="1" Content="Dodaj XP" Click="ButtonBase_OnClick"/>
         </Grid>
 
             <Label Grid.Row ="1" Grid.Column="1" Content="Statystyki gry" Background="Beige"/>

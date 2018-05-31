@@ -31,9 +31,15 @@ namespace WPFUI
 
             DataContext = _gameSession;
 
-               
+
         }
 
-
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            _gameSession.CurrentPlayer.PunktyDoswiadczenia = _gameSession.CurrentPlayer.PunktyDoswiadczenia + 10;
+        }
     }
+
+
+
 }
