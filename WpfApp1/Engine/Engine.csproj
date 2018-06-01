@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\WorldFactory.cs" />
+    <Compile Include="Models\World.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -47,15 +49,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="Obrazy\Lokacje\FarmFields.png" />
+    <Resource Include="Obrazy\Lokacje\PoleFarmera.png" />
     <Resource Include="Obrazy\Lokacje\Farmhouse.png" />
-    <Resource Include="Obrazy\Lokacje\HerbalistsGarden.png" />
-    <Resource Include="Obrazy\Lokacje\HerbalistsHut.png" />
+    <Resource Include="Obrazy\Lokacje\ogrodzielarki.png" />
+    <Resource Include="Obrazy\Lokacje\Domekzielarki.png" />
     <Resource Include="Obrazy\Lokacje\Dom.png" />
-    <Resource Include="Obrazy\Lokacje\SpiderForest.png" />
-    <Resource Include="Obrazy\Lokacje\TownGate.png" />
-    <Resource Include="Obrazy\Lokacje\TownSquare.png" />
-    <Resource Include="Obrazy\Lokacje\Trader.png" />
+    <Resource Include="Obrazy\Lokacje\Pajeczylas.png" />
+    <Resource Include="Obrazy\Lokacje\Brama.png" />
+    <Resource Include="Obrazy\Lokacje\Plac.png" />
+    <Resource Include="Obrazy\Lokacje\Sklep.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

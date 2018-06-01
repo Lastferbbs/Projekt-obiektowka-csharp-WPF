@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Engine.Factories;
 using Engine.Models;
 
 namespace Engine.ViewModels
@@ -11,6 +12,7 @@ namespace Engine.ViewModels
     {
         public Player CurrentPlayer { get; set; }
         public Location CurrentLocation { get; set; }
+        public World CurrentWorld { get; set; }
 
         public GameSession()
         {
@@ -22,14 +24,32 @@ namespace Engine.ViewModels
             CurrentPlayer.PunktyDoswiadczenia = 0;
             CurrentPlayer.Poziom = 1;
 
-            CurrentLocation = new Location();
-            CurrentLocation.XCoordinate = 0;
-            CurrentLocation.YCoordinate = -1;
-            CurrentLocation.Nazwa = "Twój dom";
-            CurrentLocation.Opis = "Tutaj mieszkasz";
-            CurrentLocation.ImageName = "/Engine;component/Obrazy/Lokacje/Dom.png";
+         
+            WorldFactory factory = new WorldFactory();
+            CurrentWorld = factory.CreateWorld();
 
+            CurrentLocation = CurrentWorld.LocationAt(0, 0);
 
+           
+        }
+
+        public void IdzNaPolnoc ()
+        {
+
+        }
+
+        public void IdzNaZachod()
+        {
+
+        }
+
+        public void IdzNaWschod()
+        {
+
+        }
+
+        public void IdzNaPoludnie()
+        {
 
         }
     }

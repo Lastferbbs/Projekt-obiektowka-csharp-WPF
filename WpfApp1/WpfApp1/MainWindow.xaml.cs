@@ -34,9 +34,25 @@ namespace WPFUI
 
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void ButtonBase_OnClick_IdzNaPolnoc(object sender, RoutedEventArgs e)
         {
-            _gameSession.CurrentPlayer.PunktyDoswiadczenia = _gameSession.CurrentPlayer.PunktyDoswiadczenia + 10;
+            _gameSession.IdzNaPolnoc();
+        }
+
+        private void ButtonBase_OnClick_IdzNaZachod(object sender, RoutedEventArgs e)
+        {
+            _gameSession.IdzNaZachod();
+        }
+
+        private void ButtonBase_OnClick_IdzNaWschod(object sender, RoutedEventArgs e)
+        {
+            _gameSession.IdzNaWschod();
+        }
+
+        private void ButtonBase_OnClick_IdzNaPoludnie(object sender, RoutedEventArgs e)
+        {
+            _gameSession.IdzNaPoludnie();
+
         }
     }
 
