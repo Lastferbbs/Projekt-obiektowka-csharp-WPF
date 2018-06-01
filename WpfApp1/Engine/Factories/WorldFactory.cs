@@ -17,6 +17,10 @@ namespace Engine.Factories
                 "Gdzieś wśród tych rzędów kukurydzy, chowa się wielki szczór!",
                 "/engine;component/Obrazy/Lokacje/PoleFarmera.png");
 
+            newWorld.AddLocation(-1, -1, "Dom farmerski",
+                "Wokół pasą się krówki, a kogut przymierza się do dziobnięcia Cię w stopę.",
+                "/engine;component/Obrazy/Lokacje/Domfarmerski.png");
+
             newWorld.AddLocation(0, -1, "Dom",
                 "To twój dom!",
                 "/Engine;component/Obrazy/Lokacje/Dom.png");

@@ -50,7 +50,7 @@
   <ItemGroup />
   <ItemGroup>
     <Resource Include="Obrazy\Lokacje\PoleFarmera.png" />
-    <Resource Include="Obrazy\Lokacje\Farmhouse.png" />
+    <Resource Include="Obrazy\Lokacje\Domfarmerski.png" />
     <Resource Include="Obrazy\Lokacje\ogrodzielarki.png" />
     <Resource Include="Obrazy\Lokacje\Domekzielarki.png" />
     <Resource Include="Obrazy\Lokacje\Dom.png" />

@@ -34,22 +34,22 @@ namespace WPFUI
 
         }
 
-        private void ButtonBase_OnClick_IdzNaPolnoc(object sender, RoutedEventArgs e)
+        private void OnClick_IdzNaPolnoc(object sender, RoutedEventArgs e)
         {
             _gameSession.IdzNaPolnoc();
         }
 
-        private void ButtonBase_OnClick_IdzNaZachod(object sender, RoutedEventArgs e)
+        private void OnClick_IdzNaZachod(object sender, RoutedEventArgs e)
         {
             _gameSession.IdzNaZachod();
         }
 
-        private void ButtonBase_OnClick_IdzNaWschod(object sender, RoutedEventArgs e)
+        private void OnClick_IdzNaWschod(object sender, RoutedEventArgs e)
         {
             _gameSession.IdzNaWschod();
         }
 
-        private void ButtonBase_OnClick_IdzNaPoludnie(object sender, RoutedEventArgs e)
+        private void OnClick_IdzNaPoludnie(object sender, RoutedEventArgs e)
         {
             _gameSession.IdzNaPoludnie();
 
