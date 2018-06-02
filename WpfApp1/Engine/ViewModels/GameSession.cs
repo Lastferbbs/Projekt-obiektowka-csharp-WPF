@@ -9,7 +9,7 @@ using Engine.Models;
 
 namespace Engine.ViewModels
 {
-    public class GameSession : INotifyPropertyChanged
+    public class GameSession : notificationclass
     {
         private Location _currentLocation;
         public Player CurrentPlayer { get; set; }
@@ -21,11 +21,11 @@ namespace Engine.ViewModels
             {
                 _currentLocation = value;
 
-                OnPropertyChanged("CurrentLocation");
-                OnPropertyChanged("Czyjestdroganapolnoc");
-                OnPropertyChanged("Czyjestdroganawschod");
-                OnPropertyChanged("Czyjestdroganazachod");
-                OnPropertyChanged("Czyjestdroganapoludnie");
+                OnPropertyChanged(nameof(CurrentLocation));
+                OnPropertyChanged(nameof(Czyjestdroganapolnoc));
+                OnPropertyChanged(nameof(Czyjestdroganawschod));
+                OnPropertyChanged(nameof(Czyjestdroganazachod));
+                OnPropertyChanged(nameof(Czyjestdroganapoludnie));
             }
         }
 
@@ -64,48 +64,56 @@ namespace Engine.ViewModels
 
         public GameSession()
         {
-            CurrentPlayer = new Player();
-            CurrentPlayer.Imię = "Kuba";
-            CurrentPlayer.KlasaPostaci = "Wojownik";
-            CurrentPlayer.Złoto = 1000000;
-            CurrentPlayer.PunktyZycia = 10;
-            CurrentPlayer.PunktyDoswiadczenia = 0;
-            CurrentPlayer.Poziom = 1;
+            CurrentPlayer = new Player
+            {
+                Imię = "Kuba",
+                KlasaPostaci = "Wojownik",
+                PunktyZycia = 10,
+                PunktyDoswiadczenia = 0,
+                Złoto = 1000000,
+                Poziom = 1
+            };
 
-         
-            WorldFactory factory = new WorldFactory();
-            CurrentWorld = factory.CreateWorld();
+
+
+
+            CurrentWorld = WorldFactory.CreateWorld();
 
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
 
            
         }
 
-        public void IdzNaPolnoc ()
+        public void IdzNaPolnoc()
         {
-            CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1);
+            if (Czyjestdroganapolnoc)
+            {
+                CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1);
+            }
         }
-
         public void IdzNaZachod()
         {
-            CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate - 1, CurrentLocation.YCoordinate);
+            if(Czyjestdroganazachod)
+            {
+                CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate - 1, CurrentLocation.YCoordinate);
+            }
         }
 
         public void IdzNaWschod()
         {
-            CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate + 1, CurrentLocation.YCoordinate);
+            if(Czyjestdroganawschod)
+            {
+                CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate + 1, CurrentLocation.YCoordinate);
+            }
         }
-
         public void IdzNaPoludnie()
         {
-            CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate - 1);
+            if(Czyjestdroganapoludnie)
+            {
+                CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate - 1);
+            }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        
     }
 }

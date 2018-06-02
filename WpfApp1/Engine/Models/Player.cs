@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Models
 {
-    public class Player : INotifyPropertyChanged
+    public class Player : notificationclass
     {
         private string _Imię;
         private string _KlasaPostaci;
@@ -22,7 +22,7 @@ namespace Engine.Models
             set
             {
                 _Imię = value;
-                OnPropertyChanged("Imię");
+                OnPropertyChanged(nameof(Imię));
             }
         }
         public string KlasaPostaci
@@ -31,7 +31,7 @@ namespace Engine.Models
             set
             {
                 _KlasaPostaci = value;
-                OnPropertyChanged("KlasaPostaci");
+                OnPropertyChanged(nameof(KlasaPostaci));
             }
         }
         public int PunktyZycia
@@ -40,7 +40,7 @@ namespace Engine.Models
             set
             {
                 _PunktyZycia = value;
-                OnPropertyChanged("PunktyZycia");
+                OnPropertyChanged(nameof(PunktyZycia));
             }
         }
         public int PunktyDoswiadczenia
@@ -49,7 +49,7 @@ namespace Engine.Models
             set
             {
                 _PunktyDoswiadczenia = value;
-                OnPropertyChanged("PunktyDoswiadczenia");
+                OnPropertyChanged(nameof(PunktyDoswiadczenia));
             }
         }
         public int Poziom
@@ -58,7 +58,7 @@ namespace Engine.Models
             set
             {
                 _Poziom = value;
-                OnPropertyChanged("Poziom");
+                OnPropertyChanged(nameof(Poziom));
             }
         }
         public  int Złoto
@@ -67,15 +67,10 @@ namespace Engine.Models
             set
             {
                 _Złoto = value;
-                OnPropertyChanged("Złoto");
+                OnPropertyChanged(nameof(Złoto));
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+       
     }
 }
