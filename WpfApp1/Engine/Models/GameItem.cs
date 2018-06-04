@@ -8,20 +8,20 @@ namespace Engine.Models
 {
     public class GameItem
     {
-        public int ItemTypeID { get; set; }
-        public string Name { get; set; }
-        public int Price { get; set; }
+        public int IdPrzedmiotu { get; set; }
+        public string Nazwa { get; set; }
+        public int Cena { get; set; }
 
-        public GameItem(int itemTypeID, string name, int price)
+        public GameItem(int idPrzedmiotu, string nazwa, int cena)
         {
-            ItemTypeID = itemTypeID;
-            Name = name;
-            Price = price;
+            IdPrzedmiotu = idPrzedmiotu;
+            Nazwa = nazwa;
+            Cena = cena;
         }
 
         public GameItem Clone()
         {
-            return new GameItem(ItemTypeID, Name, Price);
+            return new GameItem(IdPrzedmiotu, Nazwa, Cena);
         }
     }
 }

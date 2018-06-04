@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -61,7 +62,7 @@ namespace Engine.Models
                 OnPropertyChanged(nameof(Poziom));
             }
         }
-        public  int Złoto
+        public int Złoto
         {
             get { return _Złoto; }
             set
@@ -69,6 +70,14 @@ namespace Engine.Models
                 _Złoto = value;
                 OnPropertyChanged(nameof(Złoto));
             }
+        }
+
+    public ObservableCollection<GameItem> Inwentarz { get; set; }
+
+        public Player()
+        {
+            Inwentarz = new ObservableCollection<GameItem>();
+
         }
 
        
