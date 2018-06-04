@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\ItemFactory.cs" />
     <Compile Include="Factories\WorldFactory.cs" />
+    <Compile Include="Models\GameItem.cs" />
+    <Compile Include="Models\Weapon.cs" />
     <Compile Include="Models\World.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Player.cs" />
