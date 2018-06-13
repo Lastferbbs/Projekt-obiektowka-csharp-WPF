@@ -23,6 +23,8 @@ namespace Engine.Factories
                 "Wokół pasą się krówki, a kogut przymierza się do dziobnięcia Cię w stopę.",
                 "/engine;component/Obrazy/Lokacje/Domfarmerski.png");
 
+            newWorld.LocationAt(-1, -1).QuestsAvailableHere.Add(QuestFactory.GetQuestByID(2));
+
             newWorld.AddLocation(0, -1, "Dom",
                 "To twój dom!",
                 "/Engine;component/Obrazy/Lokacje/Dom.png");
@@ -49,7 +51,7 @@ namespace Engine.Factories
                 "Już z kilometra czuć intensywny zapach roślin, na ganku zapach jest nie do wytrzymania!.",
                 "/Engine;component/Obrazy/Lokacje/Domekzielarki.png");
 
-            newWorld.LocationAt(0, 1).QuestsAvailableHere.Add(QuestFactory.GetQuestByID(2));
+            newWorld.LocationAt(0, 1).QuestsAvailableHere.Add(QuestFactory.GetQuestByID(1));
 
             newWorld.AddLocation(0, 2, "Ogród zielarki",
                 "Tu też woń kwiatów przyprawia o zawrót głowy, jedynie węże wydają się być odporne.",

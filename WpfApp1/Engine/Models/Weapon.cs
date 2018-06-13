@@ -20,7 +20,7 @@ namespace Engine.Models
 
         public new Weapon Clone()
         {
-            return new Weapon(IdPrzedmiotu, Nazwa, Cena, MinimumDamage, MaximumDamage);
+            return new Weapon(IdItemka, Nazwa, Cena, MinimumDamage, MaximumDamage);
         }
     }
 }

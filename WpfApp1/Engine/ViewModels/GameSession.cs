@@ -37,6 +37,7 @@ namespace Engine.ViewModels
 
                 GivePlayerQuestsAtLocation();
                 GetMonsterAtLocation();
+                CompleteQuestsAtLocation();
             }
         }
 
@@ -150,16 +151,81 @@ namespace Engine.ViewModels
             }
         }
 
-         private void GivePlayerQuestsAtLocation()
+        private void CompleteQuestsAtLocation()
         {
-            foreach(Quest quest in CurrentLocation.QuestsAvailableHere)
+            foreach (Quest quest in CurrentLocation.QuestsAvailableHere)
             {
-                if(!CurrentPlayer.Quests.Any(q => q.PlayerQuest.ID == quest.ID))
+                QuestStatus questToComplete =
+                    CurrentPlayer.Quests.FirstOrDefault(q => q.PlayerQuest.ID == quest.ID &&
+                                                             !q.IsCompleted);
+
+                if (questToComplete != null)
                 {
-                    CurrentPlayer.Quests.Add(new QuestStatus(quest));
+                    if (CurrentPlayer.HasAllTheseItems(quest.PotrzebnaIlość))
+                    {
+                        // Zabierz itemy do questa z plecaka gracza
+                        foreach (ItemQuantity itemQuantity in quest.PotrzebnaIlość)
+                        {
+                            for (int i = 0; i < itemQuantity.Ilość; i++)
+                            {
+                                CurrentPlayer.RemoveItemFromInventory(CurrentPlayer.Inwentarz.First(item => item.IdItemka == itemQuantity.IdPrzedmiotu));
+                            }
+                        }
+
+                        RaiseMessage("");
+                        RaiseMessage($"'{quest.Nazwa}' - to zadanie zostało ukończone");
+
+                        // Przydziel nagrodę
+                        CurrentPlayer.PunktyDoswiadczenia += quest.DoświadczenieDoZdobycia;
+                        RaiseMessage($" {quest.DoświadczenieDoZdobycia} - otrzymane punkty doświadczenia");
+
+                        CurrentPlayer.Złoto += quest.ZłotoDoZdobycia;
+                        RaiseMessage($"{quest.ZłotoDoZdobycia} otrzymane złoto");
+
+                        foreach (ItemQuantity itemQuantity in quest.Nagroda)
+                        {
+                            GameItem rewardItem = ItemFactory.CreateGameItem(itemQuantity.IdPrzedmiotu);
+
+                            CurrentPlayer.AddItemToInventory(rewardItem);
+                            RaiseMessage($"{rewardItem.Nazwa} - zdobyto nowy przedmiot");
+                        }
+
+                        // Oznacz zadanie jako ukonczone
+                        questToComplete.IsCompleted = true;
+                    }
                 }
             }
         }
+
+        private void GivePlayerQuestsAtLocation()
+        {
+            foreach (Quest quest in CurrentLocation.QuestsAvailableHere)
+            {
+                if (!CurrentPlayer.Quests.Any(q => q.PlayerQuest.ID == quest.ID))
+                {
+                    CurrentPlayer.Quests.Add(new QuestStatus(quest));
+
+                    RaiseMessage("");
+                    RaiseMessage($"'{quest.Nazwa}' - otrzymano nowe zadanie!");
+                    RaiseMessage(quest.Opis);
+
+                    RaiseMessage("Wróc z:");
+                    foreach (ItemQuantity itemQuantity in quest.PotrzebnaIlość)
+                    {
+                        RaiseMessage($"   {itemQuantity.Ilość}x{ItemFactory.CreateGameItem(itemQuantity.IdPrzedmiotu).Nazwa}");
+                    }
+
+                    RaiseMessage("A otrzymasz:");
+                    RaiseMessage($"   {quest.DoświadczenieDoZdobycia} - punkty doświadczzenia");
+                    RaiseMessage($"   {quest.ZłotoDoZdobycia} - złoto");
+                    foreach (ItemQuantity itemQuantity in quest.Nagroda)
+                    {
+                        RaiseMessage($"   {itemQuantity.Ilość}x{ItemFactory.CreateGameItem(itemQuantity.IdPrzedmiotu).Nazwa}");
+                    }
+                }
+            }
+        }
+
 
         private void GetMonsterAtLocation()
         {

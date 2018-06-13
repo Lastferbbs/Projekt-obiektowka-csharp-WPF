@@ -32,7 +32,7 @@ namespace Engine.Factories
                                     "Pokonaj szczury, które podjadają moją pszenicę!",
                                     new List<ItemQuantity> { new ItemQuantity(9004, 5) },
                                     20, 10,
-                                    new List<ItemQuantity> { new ItemQuantity(1001, 1) }));
+                                    new List<ItemQuantity> { new ItemQuantity(1002, 1) }));
         }
 
         internal static Quest GetQuestByID(int id)

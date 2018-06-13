@@ -25,9 +25,9 @@ namespace Engine.Factories
             _standardGameItems.Add(new GameItem(9006, "Pajęczy jad", 2));
         }
 
-        public static GameItem CreateGameItem(int idPrzedmiotu)
+        public static GameItem CreateGameItem(int idItemka)
         {
-            GameItem standardItem = _standardGameItems.FirstOrDefault(item => item.IdPrzedmiotu == idPrzedmiotu);
+            GameItem standardItem = _standardGameItems.FirstOrDefault(item => item.IdItemka == idItemka);
 
             if (standardItem != null)
             {
