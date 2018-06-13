@@ -100,7 +100,7 @@
               Background="BurlyWood">
 
             <TabControl>
-                <TabItem Header="Inventory">
+                <TabItem Header="Inwentarz">
                     <DataGrid ItemsSource="{Binding CurrentPlayer.Inwentarz}"
                               AutoGenerateColumns="False"
                               HeadersVisibility="Column">
@@ -110,6 +110,21 @@
                                                 Width="*"/>
                             <DataGridTextColumn Header="Cena"
                                                 Binding="{Binding Cena}"
+                                                Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                
+                <TabItem Header="Zadania">
+                    <DataGrid ItemsSource="{Binding CurrentPlayer.Quests}"
+                              AutoGenerateColumns="False"
+                              HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nazwa"
+                                                Binding="{Binding PlayerQuest.Nazwa}"
+                                                Width="*"/>
+                            <DataGridTextColumn Header="Wykonany?"
+                                                Binding="{Binding IsCompleted}"
                                                 Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>

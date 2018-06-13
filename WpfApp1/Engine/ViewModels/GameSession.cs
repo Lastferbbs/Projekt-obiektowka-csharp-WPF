@@ -26,6 +26,8 @@ namespace Engine.ViewModels
                 OnPropertyChanged(nameof(Czyjestdroganawschod));
                 OnPropertyChanged(nameof(Czyjestdroganazachod));
                 OnPropertyChanged(nameof(Czyjestdroganapoludnie));
+
+                GivePlayerQuestsAtLocation();
             }
         }
 
@@ -81,8 +83,7 @@ namespace Engine.ViewModels
 
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
 
-          
-
+           
         }
 
         public void IdzNaPolnoc()
@@ -115,6 +116,16 @@ namespace Engine.ViewModels
             }
         }
 
+         private void GivePlayerQuestsAtLocation()
+        {
+            foreach(Quest quest in CurrentLocation.QuestsAvailableHere)
+            {
+                if(!CurrentPlayer.Quests.Any(q => q.PlayerQuest.ID == quest.ID))
+                {
+                    CurrentPlayer.Quests.Add(new QuestStatus(quest));
+                }
+            }
+        }
         
     }
 }

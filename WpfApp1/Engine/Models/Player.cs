@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Engine.Models
 {
     public class Player : notificationclass
@@ -73,10 +74,13 @@ namespace Engine.Models
         }
 
     public ObservableCollection<GameItem> Inwentarz { get; set; }
+        
+    public ObservableCollection<QuestStatus> Quests { get; set; }
 
         public Player()
         {
             Inwentarz = new ObservableCollection<GameItem>();
+            Quests = new ObservableCollection<QuestStatus>();
 
         }
 

@@ -23,11 +23,11 @@ namespace Engine.Models
 
         }
 
-        public Location LocationAt(int XCoordinate, int YCoordinate )
+        public Location LocationAt(int XCoordinate, int YCoordinate)
         {
-            foreach(Location loc in _locations)
+            foreach (Location loc in _locations)
             {
-                if(loc.XCoordinate == XCoordinate && loc.YCoordinate == YCoordinate)
+                if (loc.XCoordinate == XCoordinate && loc.YCoordinate == YCoordinate)
                 {
                     return loc;
                 }

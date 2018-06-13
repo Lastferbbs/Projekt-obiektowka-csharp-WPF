@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class notificationclass
+    public class notificationclass : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

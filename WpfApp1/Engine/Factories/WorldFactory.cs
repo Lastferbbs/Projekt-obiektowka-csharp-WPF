@@ -45,6 +45,8 @@ namespace Engine.Factories
                 "Już z kilometra czuć intensywny zapach roślin, na ganku zapach jest nie do wytrzymania!.",
                 "/Engine;component/Obrazy/Lokacje/Domekzielarki.png");
 
+            newWorld.LocationAt(0, 1).QuestsAvailableHere.Add(QuestFactory.GetQuestByID(2));
+
             newWorld.AddLocation(0, 2, "Ogród zielarki",
                 "Tu też woń kwiatów przyprawia o zawrót głowy, jedynie węże wydają się być odporne.",
                 "/Engine;component/Obrazy/Lokacje/ogrodzielarki.png");
