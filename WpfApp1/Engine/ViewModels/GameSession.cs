@@ -104,7 +104,7 @@ namespace Engine.ViewModels
                 KlasaPostaci = "Wojownik",
                 PunktyZycia = 10,
                 PunktyDoswiadczenia = 0,
-                Złoto = 1000000,
+                Złoto = 1000,
                 Poziom = 1
             };
 
