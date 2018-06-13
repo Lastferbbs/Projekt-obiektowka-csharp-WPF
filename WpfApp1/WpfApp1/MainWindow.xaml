@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFUI"
+        
         mc:Ignorable="d"
         FontSize="11 pt"
         Title="Gierka" Height="700" Width="1024">
@@ -94,7 +95,46 @@
                                TextWrapping="Wrap"/>
                 </Grid>
             </Border>
+
+            <!-- Monster information -->
+            <Border Grid.Row="1" Grid.Column="1"
+                    BorderBrush="Gainsboro"
+                    BorderThickness="1">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               HorizontalAlignment="Center"
+                               Height="Auto"
+                               Text="{Binding CurrentMonster.Nazwa}" />
+
+                    <Image Grid.Row="1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Height="125"
+                           Width="125"
+                           Source="{Binding CurrentMonster.ImageName}" />
+
+                    <StackPanel Grid.Row="2"
+                                Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
+                                HorizontalAlignment="Center"
+                                Orientation="Horizontal">
+                        <TextBlock>Punkty Życia: </TextBlock>
+                        <TextBlock Text="{Binding CurrentMonster.PunktyZycia}" />
+                    </StackPanel>
+
+                </Grid>
+
+            </Border>
+
         </Grid>
+
+
 
         <Grid Grid.Row="2" Grid.Column="0"
               Background="BurlyWood">

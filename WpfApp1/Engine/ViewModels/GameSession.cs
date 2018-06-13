@@ -12,6 +12,8 @@ namespace Engine.ViewModels
     public class GameSession : notificationclass
     {
         private Location _currentLocation;
+        private Monster _currentMonster;
+
         public Player CurrentPlayer { get; set; }
         public World CurrentWorld { get; set; }
         public Location CurrentLocation
@@ -28,6 +30,19 @@ namespace Engine.ViewModels
                 OnPropertyChanged(nameof(Czyjestdroganapoludnie));
 
                 GivePlayerQuestsAtLocation();
+                GetMonsterAtLocation();
+            }
+        }
+
+        public Monster CurrentMonster
+        {
+            get { return _currentMonster; }
+            set
+            {
+                _currentMonster = value;
+
+                OnPropertyChanged(nameof(CurrentMonster));
+                OnPropertyChanged(nameof(HasMonster));
             }
         }
 
@@ -63,6 +78,7 @@ namespace Engine.ViewModels
             }
         }
 
+        public bool HasMonster => CurrentMonster != null;
 
         public GameSession()
         {
@@ -126,6 +142,10 @@ namespace Engine.ViewModels
                 }
             }
         }
-        
+
+        private void GetMonsterAtLocation()
+        {
+            CurrentMonster = CurrentLocation.GetMonster();
+        }
     }
 }

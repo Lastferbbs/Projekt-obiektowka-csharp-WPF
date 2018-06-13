@@ -14,8 +14,10 @@ namespace Engine.Factories
             World newWorld = new World();
 
             newWorld.AddLocation(-2, -1, "Pole Farmera",
-                "Gdzieś wśród tych rzędów kukurydzy, chowa się wielki szczór!",
+                "Gdzieś wśród tych rzędów kukurydzy, chowa się wielki szczur!",
                 "/engine;component/Obrazy/Lokacje/PoleFarmera.png");
+
+            newWorld.LocationAt(-2, -1).AddMonster(2, 100);
 
             newWorld.AddLocation(-1, -1, "Dom farmerski",
                 "Wokół pasą się krówki, a kogut przymierza się do dziobnięcia Cię w stopę.",
@@ -41,6 +43,8 @@ namespace Engine.Factories
                 "Wszystkie rośliny pokrytę są pajęczyną...",
                 "/Engine;component/Obrazy/Lokacje/Pajeczylas.png");
 
+            newWorld.LocationAt(2, 0).AddMonster(3, 100);
+
             newWorld.AddLocation(0, 1, "Domek zielarki",
                 "Już z kilometra czuć intensywny zapach roślin, na ganku zapach jest nie do wytrzymania!.",
                 "/Engine;component/Obrazy/Lokacje/Domekzielarki.png");
@@ -50,6 +54,8 @@ namespace Engine.Factories
             newWorld.AddLocation(0, 2, "Ogród zielarki",
                 "Tu też woń kwiatów przyprawia o zawrót głowy, jedynie węże wydają się być odporne.",
                 "/Engine;component/Obrazy/Lokacje/ogrodzielarki.png");
+
+            newWorld.LocationAt(0, 2).AddMonster(1, 100);
 
             return newWorld;
         }

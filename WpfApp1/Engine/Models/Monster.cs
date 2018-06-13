@@ -14,14 +14,14 @@ namespace Engine.Models
 
         public string Nazwa { get; private set; }
         public string ImageName { get; set; }
-        public int MaxObrazenia { get; private set; }
-        public int Obrazenia
+        public int MaxPunktyZycia { get; private set; }
+        public int PunktyZycia
         {
             get { return _obrazenia; }
             private set
             {
                 _obrazenia = value;
-                OnPropertyChanged(nameof(Obrazenia));
+                OnPropertyChanged(nameof(PunktyZycia));
             }
         }
 
@@ -35,9 +35,9 @@ namespace Engine.Models
             int punktyxp, int zlotodozdobycia)
         {
             Nazwa = nazwa;
-            ImageName = string.Format("/Engine;component/Images/Monsters/{0}", imageName);
-            MaxObrazenia = maxobrazenia;
-            Obrazenia = obrazenia;
+            ImageName = string.Format("/Engine;component/Obrazy/Stworki/{0}", imageName);
+            MaxPunktyZycia = maxobrazenia;
+            PunktyZycia = obrazenia;
             PunktyXp = punktyxp;
             ZlotoDoZdobycia = zlotodozdobycia;
 
