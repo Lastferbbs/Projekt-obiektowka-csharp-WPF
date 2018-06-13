@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Engine.EventArgs;
 using Engine.Factories;
 using Engine.Models;
 
@@ -11,6 +12,11 @@ namespace Engine.ViewModels
 {
     public class GameSession : notificationclass
     {
+
+        public event EventHandler<WiadomosciEventArgs> OnMessageRaised;
+
+        #region Properties
+
         private Location _currentLocation;
         private Monster _currentMonster;
 
@@ -43,9 +49,17 @@ namespace Engine.ViewModels
 
                 OnPropertyChanged(nameof(CurrentMonster));
                 OnPropertyChanged(nameof(HasMonster));
+
+                if (CurrentMonster != null)
+                {
+                    RaiseMessage("");
+                    RaiseMessage($"Zbliza się do Ciebie {CurrentMonster.Nazwa}!");
+                }
             }
+
         }
 
+        public Weapon CurrentWeapon { get; set; }
         public bool Czyjestdroganapolnoc
         {
             get
@@ -80,6 +94,7 @@ namespace Engine.ViewModels
 
         public bool HasMonster => CurrentMonster != null;
 
+        #endregion
         public GameSession()
         {
             CurrentPlayer = new Player
@@ -92,7 +107,10 @@ namespace Engine.ViewModels
                 Poziom = 1
             };
 
-
+            if (!CurrentPlayer.Weapons.Any())
+            {
+                CurrentPlayer.AddItemToInventory(ItemFactory.CreateGameItem(1001));
+            }
 
 
             CurrentWorld = WorldFactory.CreateWorld();
@@ -146,6 +164,82 @@ namespace Engine.ViewModels
         private void GetMonsterAtLocation()
         {
             CurrentMonster = CurrentLocation.GetMonster();
+
+       
+        }
+
+        public void AttackCurrentMonster()
+        {
+            if (CurrentWeapon == null)
+            {
+                RaiseMessage("Najpierw wybierz broń.");
+                return;
+            }
+
+            // Determinuje obrazenia, ktore zadaje postać
+            int damageToMonster = RandomNumberGenerator.NumberBetween(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage);
+
+            if (damageToMonster == 0)
+            {
+                RaiseMessage($"{CurrentMonster.Nazwa} zrobił unik!");
+            }
+            else
+            {
+                CurrentMonster.PunktyZycia -= damageToMonster;
+                RaiseMessage($"{CurrentMonster.Nazwa} dostał za {damageToMonster}");
+            }
+
+            // Jeśli stworek zginie, zbierz loot
+            if (CurrentMonster.PunktyZycia <= 0)
+            {
+                RaiseMessage("");
+                RaiseMessage($"{CurrentMonster.Nazwa} został pokonany!");
+
+                CurrentPlayer.PunktyDoswiadczenia += CurrentMonster.PunktyXp;
+                RaiseMessage($"{CurrentMonster.PunktyXp} - zdobyte doświadczenie.");
+
+                CurrentPlayer.Złoto += CurrentMonster.ZlotoDoZdobycia;
+                RaiseMessage($"{CurrentMonster.ZlotoDoZdobycia} - zdobyte złoto.");
+
+                foreach (ItemQuantity itemQuantity in CurrentMonster.Inventory)
+                {
+                    GameItem item = ItemFactory.CreateGameItem(itemQuantity.IdPrzedmiotu);
+                    CurrentPlayer.AddItemToInventory(item);
+                    RaiseMessage($"{itemQuantity.Ilość}x{item.Nazwa} - nowy przedmiot");
+                }
+
+                // Nowy stworek do walki
+                GetMonsterAtLocation();
+            }
+            else
+            {
+                // Jeśli stworek żyje, on atakuje
+                int damageToPlayer = RandomNumberGenerator.NumberBetween(CurrentMonster.MinObrazenia, CurrentMonster.MaxObrazenia);
+
+                if (damageToPlayer == 0)
+                {
+                    RaiseMessage("Udalo Ci się uniknąc obrażeń");
+                }
+                else
+                {
+                    CurrentPlayer.PunktyZycia -= damageToPlayer;
+                    RaiseMessage($"{CurrentMonster.Nazwa} zadał Ci {damageToPlayer} puntków obrażeń.");
+                }
+
+                // Gdy gracz zginie, przenieś go do domu i uzdrów
+                if (CurrentPlayer.PunktyZycia <= 0)
+                {
+                    RaiseMessage("");
+                    RaiseMessage($"Zostałeś pokonany, lecz twoja mama Cię wskrzesiła");
+
+                    CurrentLocation = CurrentWorld.LocationAt(0, -1); // Dom
+                    CurrentPlayer.PunktyZycia = CurrentPlayer.Poziom * 10; // Wylecz gracza
+                }
+            }
+        }
+        private void RaiseMessage(string message)
+        {
+            OnMessageRaised?.Invoke(this, new WiadomosciEventArgs(message));
         }
     }
 }

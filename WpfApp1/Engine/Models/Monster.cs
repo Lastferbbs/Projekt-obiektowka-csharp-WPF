@@ -18,7 +18,7 @@ namespace Engine.Models
         public int PunktyZycia
         {
             get { return _obrazenia; }
-            private set
+            set
             {
                 _obrazenia = value;
                 OnPropertyChanged(nameof(PunktyZycia));
@@ -28,18 +28,24 @@ namespace Engine.Models
         public int PunktyXp { get; private set; }
         public int ZlotoDoZdobycia { get; private set; }
 
+        public int MinObrazenia { get; set; }
+        public int MaxObrazenia { get; set; }
+
         public ObservableCollection<ItemQuantity> Inventory { get; set; }
 
         public Monster(string nazwa, string imageName,
-            int maxobrazenia, int obrazenia,
-            int punktyxp, int zlotodozdobycia)
+            int maxpunktyzycia, int punktyzycia,
+            int punktyxp, int zlotodozdobycia,
+            int minObrazenia, int maxobrazenia)
         {
             Nazwa = nazwa;
             ImageName = string.Format("/Engine;component/Obrazy/Stworki/{0}", imageName);
-            MaxPunktyZycia = maxobrazenia;
-            PunktyZycia = obrazenia;
+            MaxPunktyZycia = maxpunktyzycia;
+            PunktyZycia = punktyzycia;
             PunktyXp = punktyxp;
             ZlotoDoZdobycia = zlotodozdobycia;
+            MaxObrazenia = maxobrazenia;
+            MinObrazenia = minObrazenia;
 
             Inventory = new ObservableCollection<ItemQuantity>();
         }

@@ -15,7 +15,7 @@ namespace Engine.Factories
             {
                 case 1:
                     Monster waz =
-                        new Monster("Wąż", "Wąż.png", 4, 4, 5, 1);
+                        new Monster("Wąż", "Wąż.png", 4, 4, 5, 1, 1, 2);
 
                     AddLootItem(waz, 9001, 25);
                     AddLootItem(waz, 9002, 75);
@@ -24,7 +24,7 @@ namespace Engine.Factories
 
                 case 2:
                     Monster szczur =
-                        new Monster("Wąż", "Szczur.png", 5, 5, 5, 1);
+                        new Monster("Szczur", "Szczur.png", 5, 5, 5, 1, 1, 2);
 
                     AddLootItem(szczur, 9003, 25);
                     AddLootItem(szczur, 9004, 75);
@@ -33,7 +33,7 @@ namespace Engine.Factories
 
                 case 3:
                     Monster wielkiPajak =
-                        new Monster("Wielki Pająk", "WielkiPająk.png", 10, 10, 10, 3);
+                        new Monster("Wielki Pająk", "WielkiPająk.png", 10, 10, 10, 3, 2, 5);
 
                     AddLootItem(wielkiPajak, 9005, 25);
                     AddLootItem(wielkiPajak, 9006, 75);

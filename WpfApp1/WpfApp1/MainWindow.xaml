@@ -67,6 +67,24 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
+            <!-- Wiadomości z gry -->
+            <Border Grid.Row="0" Grid.Column="0"
+                    Grid.RowSpan="2"
+                    BorderBrush="Gainsboro"
+                    BorderThickness="1">
+
+                <RichTextBox x:Name="GameMessages"
+                             Background="Beige"
+                             VerticalScrollBarVisibility="Auto">
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Paragraph}">
+                            <Setter Property="Margin" Value="0"/>
+                        </Style>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+
+            </Border>
+
             <Border Grid.Row="0" Grid.Column="1" 
                     BorderBrush="Gainsboro"
                     BorderThickness="1">
@@ -96,7 +114,7 @@
                 </Grid>
             </Border>
 
-            <!-- Monster information -->
+            <!-- Info o stworkach -->
             <Border Grid.Row="1" Grid.Column="1"
                     BorderBrush="Gainsboro"
                     BorderThickness="1">
@@ -135,7 +153,7 @@
         </Grid>
 
 
-
+        <!-- Info z inwentarza -->
         <Grid Grid.Row="2" Grid.Column="0"
               Background="BurlyWood">
 
@@ -171,7 +189,7 @@
                 </TabItem>
             </TabControl>
         </Grid>
-
+        <!-- Przyciski -->
         <Grid Grid.Row="2" Grid.Column="1"
       Background="Lavender">
 
@@ -184,6 +202,34 @@
                 <ColumnDefinition Width="255" />
             </Grid.ColumnDefinitions>
 
+            <!-- Walka -->
+            <Grid Grid.Row="0" Grid.Column="0"
+                  Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox Grid.Row="0" Grid.Column="0"
+                          ItemsSource="{Binding CurrentPlayer.Weapons}"
+                          SelectedItem="{Binding CurrentWeapon}"
+                          DisplayMemberPath="Nazwa"
+                          SelectedValuePath="ID"/>
+
+                <Button Grid.Row="0" Grid.Column="2"
+                        Content="Atakuj"
+                        Click="OnClick_AttackMonster"/>
+            </Grid>
+
+            <!-- Sterowanie -->
             <Grid Grid.Row="0" Grid.Column="1">
 
                 <Grid.RowDefinitions>
